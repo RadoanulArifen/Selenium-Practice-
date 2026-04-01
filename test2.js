@@ -1,9 +1,9 @@
-import { Builder, By, Browser } from "selenium-webdriver";
+import { Builder, By, Browser, Key} from "selenium-webdriver";
 
 const driver = new Builder().forBrowser(Browser.CHROME).build();
 const gender = "Male";
 const date = "10";
-const subject = "Computer";
+const subject = "Computer Science";
 
 async function testrun2(){
 
@@ -25,11 +25,15 @@ async function testrun2(){
     await driver.findElement(By.xpath("//option[@value='2010']")).click();
     await driver.findElement(By.className( `react-datepicker__day react-datepicker__day--0${date}`)).click();
     await driver.findElement(By.id("subjectsInput")).sendKeys(subject);
-    await driver.findElement(By.xpath(`//div[@role='option' and contains(text(),'${subject}')]`)).click();
+    await driver.findElement(By.id("subjectsInput")).sendKeys("Computer Science", Key.ENTER);
     await driver.findElement(By.xpath("//input[@id='hobbies-checkbox-1']/following-sibling::label[contains(text(),'Sports')]")).click();
-    await driver.findElement(By.xpath())
-
-
+    await driver.findElement(By.id("uploadPicture")).sendKeys("/home/arifen/Downloads/download.jpeg");
+    await driver.findElement(By.xpath("//textarea[@id='currentAddress']")).sendKeys("123 Main Street, City, Country");
+    await driver.findElement(By.xpath("//input[@id='react-select-3-input']")).sendKeys("NCR", Key.ENTER);
+    await driver.findElement(By.xpath("//input[@id='react-select-4-input']")).sendKeys("Delhi", Key.ENTER);
+    await driver.findElement(By.id("submit")).click();
+    await driver.sleep(2000);
+    await driver.findElement(By.id("closeLargeModal")).click();
 
 }
 testrun2();
